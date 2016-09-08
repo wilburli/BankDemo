@@ -1,6 +1,6 @@
 package com.bankdemo.configurations;
 
-import com.bankdemo.ws.soap.HelloWorldWs;
+import com.bankdemo.ws.soap.AccountWS;
 import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.jaxws.EndpointImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +19,12 @@ public class CxfEndpointsConfig {
     SpringBus bus;
 
     @Autowired
-    HelloWorldWs helloWorldWs;
+    AccountWS helloWorldWs;
 
     @Bean
     public Endpoint endpoint() {
         EndpointImpl endpoint = new EndpointImpl(bus, helloWorldWs);
-        endpoint.publish("/"+HelloWorldWs.WS_SERVICE_NAME);
+        endpoint.publish("/"+ AccountWS.WS_SERVICE_NAME);
         return endpoint;
     }
 }
