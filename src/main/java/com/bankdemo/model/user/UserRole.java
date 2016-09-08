@@ -1,5 +1,6 @@
 package com.bankdemo.model.user;
 
+import com.bankdemo.enums.Role;
 import com.bankdemo.model.BaseObject;
 
 import javax.persistence.*;

@@ -1,4 +1,4 @@
-package com.bankdemo.model.user;
+package com.bankdemo.enums;
 
 /**
  * Created by Ilyas.Kuanyshbekov on 07.09.2016.
