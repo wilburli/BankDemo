@@ -2,6 +2,8 @@ package com.bankdemo.ws.soap;
 
 import com.bankdemo.exceptions.ApplicationException;
 import com.bankdemo.model.account.Account;
+import com.bankdemo.util.CxfAutoRegistrationEndpointBean;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -17,6 +19,7 @@ import javax.xml.bind.annotation.XmlElement;
         portName = AccountWS.WS_PORT_NAME,
         targetNamespace = AccountWS.WS_NAMESPACE
 )
+@CxfAutoRegistrationEndpointBean
 public interface AccountWS {
 
     String WS_NAME = "Account";
@@ -25,21 +28,36 @@ public interface AccountWS {
     String WS_NAMESPACE = "http://soap.ws.bankdemo.com/";
 
     @WebMethod
+    @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL')")
     Account openAccount(
             @WebParam(name = "iban") @XmlElement(required = true) String iban,
             @WebParam(name = "currencyCode") @XmlElement(required = true) String currencyCode
     ) throws ApplicationException;;
 
     @WebMethod
+    @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL')")
+    void closeAccount(
+            @WebParam(name = "iban") @XmlElement(required = true) String iban
+    ) throws ApplicationException;;
+
+    @WebMethod
+    @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL')")
     void deposit(
         @WebParam(name = "iban") @XmlElement(required = true) String iban,
         @WebParam(name = "amount") @XmlElement(required = true) Double amount
     ) throws ApplicationException;
 
     @WebMethod
+    @PreAuthorize("hasRole('ROLE_ACCOUNT_INFO') or hasRole('ROLE_ACCOUNT_ALL')")
     Double balance(
             @WebParam(name = "iban") @XmlElement(required = true) String iban
     ) throws ApplicationException;
 
+    @WebMethod
+    @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL')")
+    void withdraw(
+            @WebParam(name = "iban") @XmlElement(required = true) String iban,
+            @WebParam(name = "amount") @XmlElement(required = true) Double amount
+    ) throws ApplicationException;
 
 }

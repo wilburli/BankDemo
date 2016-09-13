@@ -10,7 +10,11 @@ public interface AccountProcesses {
 
     Account openAccount(String iban, String currencyCode) throws ApplicationException;
 
+    void closeAccount(String iban) throws ApplicationException;
+
     void deposit(String iban, Double amount) throws ApplicationException;
 
     Double balance(String iban) throws ApplicationException;
+
+    void withdraw(String iban, Double amount) throws ApplicationException;
 }
