@@ -40,6 +40,7 @@ public class UserDAOImpl implements UserDAO {
     @SuppressWarnings("unchecked")
     @Override
     public List<User> getUsers() {
-        return (List<User>) em.createNativeQuery("from users").getResultList();
+        final String classname = User.class.getName();
+        return (List<User>) em.createQuery("from " + classname + " e").getResultList();
     }
 }

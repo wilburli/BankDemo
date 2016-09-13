@@ -48,7 +48,8 @@ public class AccountDAOImpl implements AccountDAO {
     @SuppressWarnings("unchecked")
     @Override
     public List<Account> getAccounts() throws ApplicationException {
-        return em.createNativeQuery("from accounts").getResultList();
+        final String classname = Account.class.getName();
+        return (List<Account>) em.createQuery("from " + classname + " e").getResultList();
     }
 
     @Override

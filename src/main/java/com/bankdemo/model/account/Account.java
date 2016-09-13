@@ -85,4 +85,16 @@ public class Account extends BaseObject {
     public void setActive(Boolean active) {
         this.active = active;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "currencyCode=" + currencyCode +
+                ", balance=" + balance +
+                ", iban='" + iban + '\'' +
+                ", begda=" + begda +
+                ", endda=" + endda +
+                ", active=" + active +
+                '}';
+    }
 }

@@ -32,4 +32,14 @@ public class AccountWSEndpoint implements AccountWS {
     public Double balance(@XmlElement(required = true) String iban) throws ApplicationException {
         return accountProcesses.balance(iban);
     }
+
+    @Override
+    public void closeAccount(@XmlElement(required = true) String iban) throws ApplicationException {
+        accountProcesses.closeAccount(iban);
+    }
+
+    @Override
+    public void withdraw(@XmlElement(required = true) String iban, @XmlElement(required = true) Double amount) throws ApplicationException {
+        accountProcesses.withdraw(iban, amount);
+    }
 }

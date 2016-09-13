@@ -18,7 +18,7 @@ import org.springframework.ws.config.annotation.EnableWs;
 public class CxfConfig {
 
     @Autowired
-    SpringBus bus;
+    private SpringBus bus;
 
     @Bean
     public ServletRegistrationBean cxfServletRegistrationBean() {
