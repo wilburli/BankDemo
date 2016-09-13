@@ -1,13 +1,13 @@
-package com.bankdemo.dao;
+package com.bankdemo.service;
 
 import com.bankdemo.model.user.UserRole;
 
 import java.util.List;
 
 /**
- * Created by Ilyas.Kuanyshbekov on 07.09.2016.
+ * Created by Ilyas.Kuanyshbekov on 13.09.2016.
  */
-public interface UserRoleDAO {
+public interface UserRoleService {
 
     void addUserRole(UserRole userRole);
 

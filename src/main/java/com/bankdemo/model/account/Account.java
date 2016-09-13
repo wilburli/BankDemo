@@ -4,6 +4,7 @@ import com.bankdemo.enums.CurrencyCode;
 import com.bankdemo.model.BaseObject;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -34,6 +35,9 @@ public class Account extends BaseObject {
     @Column(name = "active")
     private Boolean active;
 
+    @ManyToOne
+    @NotNull
+    private Person person;
 
     public Account() {
     }
@@ -84,6 +88,14 @@ public class Account extends BaseObject {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     @Override

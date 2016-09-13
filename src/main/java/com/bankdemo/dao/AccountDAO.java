@@ -1,6 +1,5 @@
 package com.bankdemo.dao;
 
-import com.bankdemo.exceptions.ApplicationException;
 import com.bankdemo.model.account.Account;
 
 import java.util.List;
@@ -10,16 +9,16 @@ import java.util.List;
  */
 public interface AccountDAO {
 
-    void addAccount(Account account) throws ApplicationException;
+    void addAccount(Account account);
 
-    void updateAccount(Account account) throws ApplicationException;
+    void updateAccount(Account account);
 
-    Account getAccount(int id) throws ApplicationException;
+    Account getAccount(int id);
 
-    void deleteAccount(int id) throws ApplicationException;
+    void deleteAccount(int id);
 
-    List<Account> getAccounts() throws ApplicationException;
+    List<Account> getAccounts();
 
-    Account getAccountByIban(String iban) throws ApplicationException;
+    Account getAccountByIban(String iban);
 
 }

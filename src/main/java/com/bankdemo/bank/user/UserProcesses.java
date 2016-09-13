@@ -1,7 +1,9 @@
 package com.bankdemo.bank.user;
 
+import com.bankdemo.enums.Role;
 import com.bankdemo.exceptions.ApplicationException;
 import com.bankdemo.model.user.User;
+import com.bankdemo.model.user.UserRole;
 
 import java.util.List;
 
@@ -20,4 +22,13 @@ public interface UserProcesses {
 
     List<User> getUsers() throws ApplicationException;
 
+    UserRole addUserRole(Integer userId, Role role) throws ApplicationException;
+
+    UserRole updateUserRole(Integer roleId, Integer userId, Role role) throws ApplicationException;
+
+    UserRole getUserRole(int id) throws ApplicationException;
+
+    void deleteUserRole(int id) throws ApplicationException;
+
+    List<UserRole> getUserRoles() throws ApplicationException;
 }

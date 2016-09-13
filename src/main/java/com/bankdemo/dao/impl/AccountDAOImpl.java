@@ -1,12 +1,11 @@
 package com.bankdemo.dao.impl;
 
 import com.bankdemo.dao.AccountDAO;
-import com.bankdemo.exceptions.ApplicationException;
-import com.bankdemo.exceptions.EmptyResultException;
 import com.bankdemo.model.account.Account;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
@@ -21,48 +20,45 @@ public class AccountDAOImpl implements AccountDAO {
     private EntityManager em;
 
     @Override
-    public void addAccount(Account account) throws ApplicationException {
+    public void addAccount(Account account) {
         em.persist(account);
     }
 
     @Override
-    public void updateAccount(Account account) throws ApplicationException {
+    public void updateAccount(Account account) {
         em.merge(account);
     }
 
     @Override
-    public Account getAccount(int id) throws ApplicationException {
+    public Account getAccount(int id) {
         return em.find(Account.class, id);
     }
 
     @Override
-    public void deleteAccount(int id) throws ApplicationException {
+    public void deleteAccount(int id) {
         Account account = getAccount(id);
         if (account != null) {
             em.remove(account);
-        } else {
-            throw new EmptyResultException("Account not found for id " + id);
         }
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Account> getAccounts() throws ApplicationException {
+    public List<Account> getAccounts() {
         final String classname = Account.class.getName();
         return (List<Account>) em.createQuery("from " + classname + " e").getResultList();
     }
 
     @Override
-    public Account getAccountByIban(String iban) throws ApplicationException {
+    public Account getAccountByIban(String iban) {
         Query query = em.createNativeQuery("select id from accounts where iban = ?1");
         query.setParameter(1,iban);
-        int accountId = (int) query.getSingleResult();
 
-        Account account = getAccount(accountId);
-        if (account == null) {
-            throw new EmptyResultException("Account not found with id " + accountId + " ,iban " + iban);
+        try {
+            int accountId = (int) query.getSingleResult();
+            return getAccount(accountId);
+        } catch (NoResultException e) {
+            return null;
         }
-
-        return account;
     }
 }

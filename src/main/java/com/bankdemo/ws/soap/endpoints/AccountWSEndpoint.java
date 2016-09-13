@@ -19,8 +19,8 @@ public class AccountWSEndpoint implements AccountWS {
     private AccountProcesses accountProcesses;
 
     @Override
-    public Account openAccount(@XmlElement(required = true) String iban, @XmlElement(required = true) String currencyCode) throws ApplicationException {
-        return accountProcesses.openAccount(iban, currencyCode);
+    public Account openAccount(@XmlElement(required = true) String iban, @XmlElement(required = true) String currencyCode, @XmlElement(required = true) String individualPersonalNumber) throws ApplicationException {
+        return accountProcesses.openAccount(iban, currencyCode, individualPersonalNumber);
     }
 
     @Override

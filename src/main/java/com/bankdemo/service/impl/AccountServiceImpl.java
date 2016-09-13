@@ -1,7 +1,6 @@
 package com.bankdemo.service.impl;
 
 import com.bankdemo.dao.AccountDAO;
-import com.bankdemo.exceptions.ApplicationException;
 import com.bankdemo.model.account.Account;
 import com.bankdemo.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,32 +20,32 @@ public class AccountServiceImpl implements AccountService {
     private AccountDAO accountDAO;
 
     @Override
-    public void addAccount(Account account) throws ApplicationException {
+    public void addAccount(Account account) {
         accountDAO.addAccount(account);
     }
 
     @Override
-    public void updateAccount(Account account) throws ApplicationException {
+    public void updateAccount(Account account) {
         accountDAO.updateAccount(account);
     }
 
     @Override
-    public Account getAccount(int id) throws ApplicationException {
+    public Account getAccount(int id) {
         return accountDAO.getAccount(id);
     }
 
     @Override
-    public void deleteAccount(int id) throws ApplicationException {
+    public void deleteAccount(int id) {
         accountDAO.deleteAccount(id);
     }
 
     @Override
-    public List<Account> getAccounts() throws ApplicationException {
+    public List<Account> getAccounts() {
         return accountDAO.getAccounts();
     }
 
     @Override
-    public Account getAccountByIban(String iban) throws ApplicationException {
+    public Account getAccountByIban(String iban) {
         return accountDAO.getAccountByIban(iban);
     }
 }

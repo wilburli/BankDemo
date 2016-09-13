@@ -1,9 +1,12 @@
 package com.bankdemo.bank.user.impl;
 
 import com.bankdemo.bank.user.UserProcesses;
+import com.bankdemo.enums.Role;
 import com.bankdemo.exceptions.ApplicationException;
 import com.bankdemo.exceptions.EmptyResultException;
 import com.bankdemo.model.user.User;
+import com.bankdemo.model.user.UserRole;
+import com.bankdemo.service.UserRoleService;
 import com.bankdemo.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,9 @@ public class UserProcessesImpl implements UserProcesses {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRoleService userRoleService;
 
     private Logger logger = Logger.getLogger(getClass());
 
@@ -60,5 +66,56 @@ public class UserProcessesImpl implements UserProcesses {
     @Override
     public List<User> getUsers() throws ApplicationException {
         return userService.getUsers();
+    }
+
+    @Override
+    public UserRole addUserRole(Integer userId, Role role) throws ApplicationException {
+        User user = userService.getUser(userId);
+        if (user == null) {
+            logger.error("User not found for id " + userId);
+            throw new EmptyResultException("User not found for id " + userId);
+        }
+
+        UserRole userRole = new UserRole();
+        userRole.setUser(user);
+        userRole.setRole(role);
+        userRoleService.addUserRole(userRole);
+        logger.info("New user role created " + userRole);
+        return userRole;
+    }
+
+    @Override
+    public UserRole updateUserRole(Integer roleId, Integer userId, Role role) throws ApplicationException {
+        UserRole userRole = userRoleService.getUserRole(roleId);
+        if (userRole == null) {
+            logger.error("UserRole not found for id " + roleId);
+            throw new EmptyResultException("UserRole not found for id " + roleId);
+        }
+
+        User user = userService.getUser(userId);
+        if (user == null) {
+            logger.error("User not found for id " + userId);
+            throw new EmptyResultException("User not found for id " + userId);
+        }
+        userRole.setUser(user);
+        userRole.setRole(role);
+
+        userRoleService.updateUserRole(userRole);
+        return userRole;
+    }
+
+    @Override
+    public UserRole getUserRole(int id) throws ApplicationException {
+        return null;
+    }
+
+    @Override
+    public void deleteUserRole(int id) throws ApplicationException {
+
+    }
+
+    @Override
+    public List<UserRole> getUserRoles() throws ApplicationException {
+        return null;
     }
 }

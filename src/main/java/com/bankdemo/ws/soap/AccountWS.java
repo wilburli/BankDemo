@@ -31,7 +31,8 @@ public interface AccountWS {
     @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL')")
     Account openAccount(
             @WebParam(name = "iban") @XmlElement(required = true) String iban,
-            @WebParam(name = "currencyCode") @XmlElement(required = true) String currencyCode
+            @WebParam(name = "currencyCode") @XmlElement(required = true) String currencyCode,
+            @WebParam(name = "individualPersonalNumber") @XmlElement(required = true) String individualPersonalNumber
     ) throws ApplicationException;;
 
     @WebMethod
