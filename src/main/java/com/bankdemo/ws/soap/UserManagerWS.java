@@ -1,14 +1,18 @@
 package com.bankdemo.ws.soap;
 
+import com.bankdemo.enums.Role;
 import com.bankdemo.exceptions.ApplicationException;
 import com.bankdemo.model.user.User;
+import com.bankdemo.model.user.UserRole;
 import com.bankdemo.util.CxfAutoRegistrationEndpointBean;
+import com.bankdemo.util.RoleAdapter;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.List;
 
 /**
@@ -59,4 +63,16 @@ public interface UserManagerWS {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     List<User> getUsers()  throws ApplicationException;
 
+    @WebMethod
+    UserRole addUserRole(
+            @WebParam(name = "userId") @XmlElement(required = true) Integer userId,
+            @WebParam(name = "role") @XmlElement(name = "role", required = true) @XmlJavaTypeAdapter(RoleAdapter.class) Role role
+    )  throws ApplicationException;
+
+    @WebMethod
+    UserRole updateUserRole(
+            @WebParam(name = "roleId") @XmlElement(required = true) Integer roleId,
+            @WebParam(name = "userId") @XmlElement(required = true) Integer userId,
+            @WebParam(name = "role") @XmlElement(name = "role", required = true) @XmlJavaTypeAdapter(RoleAdapter.class) Role role
+    )  throws ApplicationException;
 }

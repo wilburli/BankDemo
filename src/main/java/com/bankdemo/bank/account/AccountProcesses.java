@@ -8,7 +8,7 @@ import com.bankdemo.model.account.Account;
  */
 public interface AccountProcesses {
 
-    Account openAccount(String iban, String currencyCode) throws ApplicationException;
+    Account openAccount(String iban, String currencyCode, String individualPersonalNumber) throws ApplicationException;
 
     void closeAccount(String iban) throws ApplicationException;
 

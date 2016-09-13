@@ -10,15 +10,15 @@ import java.util.List;
  */
 public interface AccountService {
 
-    void addAccount(Account account) throws ApplicationException;
+    void addAccount(Account account);
 
-    void updateAccount(Account account) throws ApplicationException;
+    void updateAccount(Account account);
 
-    Account getAccount(int id) throws ApplicationException;
+    Account getAccount(int id);
 
-    void deleteAccount(int id) throws ApplicationException;
+    void deleteAccount(int id);
 
-    List<Account> getAccounts() throws ApplicationException;
+    List<Account> getAccounts();
 
-    Account getAccountByIban(String iban) throws ApplicationException;
+    Account getAccountByIban(String iban);
 }
