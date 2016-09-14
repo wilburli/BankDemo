@@ -10,3 +10,4 @@ Spring Features
 - Spring JavaConfig
 - Spring Security
 - Spring JPA
+- Spring AOP

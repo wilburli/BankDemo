@@ -106,16 +106,16 @@ public class UserProcessesImpl implements UserProcesses {
 
     @Override
     public UserRole getUserRole(int id) throws ApplicationException {
-        return null;
+        return userRoleService.getUserRole(id);
     }
 
     @Override
     public void deleteUserRole(int id) throws ApplicationException {
-
+        userRoleService.deleteUserRole(id);
     }
 
     @Override
     public List<UserRole> getUserRoles() throws ApplicationException {
-        return null;
+        return userRoleService.getUserRoles();
     }
 }

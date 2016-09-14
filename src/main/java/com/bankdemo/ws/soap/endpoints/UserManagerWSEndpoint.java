@@ -58,4 +58,14 @@ public class UserManagerWSEndpoint implements UserManagerWS {
     public UserRole updateUserRole(@XmlElement(required = true) Integer roleId, @XmlElement(required = true) Integer userId, @XmlElement(name = "role", required = true) @XmlJavaTypeAdapter(RoleAdapter.class) Role role) throws ApplicationException {
         return userProcesses.updateUserRole(roleId, userId, role);
     }
+
+    @Override
+    public UserRole getUserRole(@XmlElement(required = true) int id) throws ApplicationException {
+        return userProcesses.getUserRole(id);
+    }
+
+    @Override
+    public List<UserRole> getUserRoles() throws ApplicationException {
+        return userProcesses.getUserRoles();
+    }
 }

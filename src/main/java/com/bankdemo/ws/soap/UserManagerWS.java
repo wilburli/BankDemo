@@ -64,15 +64,28 @@ public interface UserManagerWS {
     List<User> getUsers()  throws ApplicationException;
 
     @WebMethod
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     UserRole addUserRole(
             @WebParam(name = "userId") @XmlElement(required = true) Integer userId,
             @WebParam(name = "role") @XmlElement(name = "role", required = true) @XmlJavaTypeAdapter(RoleAdapter.class) Role role
     )  throws ApplicationException;
 
     @WebMethod
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     UserRole updateUserRole(
             @WebParam(name = "roleId") @XmlElement(required = true) Integer roleId,
             @WebParam(name = "userId") @XmlElement(required = true) Integer userId,
             @WebParam(name = "role") @XmlElement(name = "role", required = true) @XmlJavaTypeAdapter(RoleAdapter.class) Role role
     )  throws ApplicationException;
+
+    @WebMethod
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    UserRole getUserRole(
+            @WebParam(name = "user role id") @XmlElement(required = true) int id
+    ) throws ApplicationException;
+
+    @WebMethod
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    List<UserRole> getUserRoles() throws ApplicationException;
+
 }
