@@ -21,7 +21,7 @@ public class BankAspectAnnotationDriven {
     private static final Logger logger = Logger.getLogger(BankAspectAnnotationDriven.class);
 
 
-    @Pointcut("execution(* com.bankdemo.ws..*(..))")
+    @Pointcut("execution(* com.bankdemo.ws.soap..*(..))")
     public void webServiceMethod() {}
 
 
