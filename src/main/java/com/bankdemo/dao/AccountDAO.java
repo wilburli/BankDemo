@@ -21,4 +21,5 @@ public interface AccountDAO {
 
     Account getAccountByIban(String iban);
 
+    List<Account> getAccountsByPersonId(Integer id);
 }
