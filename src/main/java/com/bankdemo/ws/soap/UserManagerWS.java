@@ -33,59 +33,57 @@ public interface UserManagerWS {
     String WS_NAMESPACE = "http://soap.ws.bankdemo.com/";
 
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     User addUser(
             @WebParam(name = "username") @XmlElement(required = true) String username,
             @WebParam(name = "password") @XmlElement(required = true) String password
     )  throws ApplicationException;
 
+
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     User updateUser(
             @WebParam(name = "user_id")  @XmlElement(required = true) Integer id,
             @WebParam(name = "username") @XmlElement(required = true) String username,
             @WebParam(name = "password") @XmlElement(required = true) String password
     )  throws ApplicationException;
 
+
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     void deleteUser(
             @WebParam(name = "user_id") @XmlElement(required = true) Integer id
     )  throws ApplicationException;
 
+
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     User getUser(
             @WebParam(name = "user_id") @XmlElement(required = true) Integer id
     )  throws ApplicationException;
 
-    @WebMethod
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    List<User> getUsers()  throws ApplicationException;
 
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    List<User> getUsers()  throws ApplicationException;
+
+
+    @WebMethod
     UserRole addUserRole(
             @WebParam(name = "userId") @XmlElement(required = true) Integer userId,
             @WebParam(name = "role") @XmlElement(name = "role", required = true) @XmlJavaTypeAdapter(RoleAdapter.class) Role role
     )  throws ApplicationException;
 
+
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     UserRole updateUserRole(
             @WebParam(name = "roleId") @XmlElement(required = true) Integer roleId,
             @WebParam(name = "userId") @XmlElement(required = true) Integer userId,
             @WebParam(name = "role") @XmlElement(name = "role", required = true) @XmlJavaTypeAdapter(RoleAdapter.class) Role role
     )  throws ApplicationException;
 
+
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     UserRole getUserRole(
             @WebParam(name = "user role id") @XmlElement(required = true) int id
     ) throws ApplicationException;
 
-    @WebMethod
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    List<UserRole> getUserRoles() throws ApplicationException;
 
+    @WebMethod
+    List<UserRole> getUserRoles() throws ApplicationException;
 }

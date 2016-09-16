@@ -1,8 +1,6 @@
 package com.bankdemo.ws.rest;
 
-import com.bankdemo.exceptions.ApplicationException;
 import com.bankdemo.model.user.User;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -31,8 +31,8 @@ public interface PersonWS {
     String WS_PORT_NAME = WS_NAME + "Port";
     String WS_NAMESPACE = "http://soap.ws.bankdemo.com/";
 
+
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL')")
     Person addPerson(
             @WebParam(name = "firstname") @XmlElement(required = true) String firstname,
             @WebParam(name = "middlename") @XmlElement(required = true) String middlename,
@@ -42,8 +42,8 @@ public interface PersonWS {
             @WebParam(name = "gender") @XmlElement(required = true) String gender
     ) throws ApplicationException;
 
+
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL')")
     Person updatePerson(
             @WebParam(name = "person_id") @XmlElement(required = true) Integer id,
             @WebParam(name = "firstname") @XmlElement(required = true) String firstname,
@@ -53,26 +53,26 @@ public interface PersonWS {
             @WebParam(name = "gender") @XmlElement(required = true) String gender
     ) throws ApplicationException;
 
+
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL') or hasRole('ROLE_ACCOUNT_INFO')")
     Person getPerson(
             @WebParam(name = "person_id") @XmlElement(required = true) Integer id
     ) throws ApplicationException;
 
+
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL')")
     void deletePerson(
             @WebParam(name = "person_id") @XmlElement(required = true) Integer id
     ) throws ApplicationException;
 
+
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL') or hasRole('ROLE_ACCOUNT_INFO')")
     Person getPersonByIndividualPersonalNumber(
             @WebParam(name = "individualpersonalnumber") @XmlElement(required = true) String individualpersonalnumber
     ) throws ApplicationException;
 
+
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL') or hasRole('ROLE_ACCOUNT_INFO')")
     List<Person> getPersons() throws ApplicationException;
 
 }
