@@ -2,6 +2,7 @@ package com.bankdemo.dao.impl;
 
 import com.bankdemo.dao.UserDAO;
 import com.bankdemo.model.user.User;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -39,9 +40,17 @@ public class UserDAOImpl implements UserDAO {
         em.remove(getUser(id));
     }
 
+    @Cacheable("ehCache")
     @SuppressWarnings("unchecked")
     @Override
     public List<User> getUsers() {
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+
+        }
+
         final String classname = User.class.getName();
         return (List<User>) em.createQuery("from " + classname + " e").getResultList();
     }
