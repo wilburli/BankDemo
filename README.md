@@ -3,6 +3,7 @@
 Technology stack
 - Spring Boot
 - Hibernate
+- EhCache
 - Apache CXF
 - Tomcat
 
