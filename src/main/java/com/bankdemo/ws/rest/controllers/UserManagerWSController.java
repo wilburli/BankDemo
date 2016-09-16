@@ -3,12 +3,15 @@ package com.bankdemo.ws.rest.controllers;
 import com.bankdemo.bank.user.UserProcesses;
 import com.bankdemo.exceptions.ApplicationException;
 import com.bankdemo.model.user.User;
+import com.bankdemo.service.UserService;
 import com.bankdemo.ws.rest.UserManagerWS;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -22,6 +25,9 @@ public class UserManagerWSController  implements UserManagerWS {
 
     @Autowired
     private UserProcesses userProcesses;
+
+    @Autowired
+    private UserService userService;
 
     private static final Logger logger = Logger.getLogger(UserManagerWSController.class);
 

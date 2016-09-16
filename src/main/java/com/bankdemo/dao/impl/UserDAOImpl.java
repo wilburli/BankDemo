@@ -5,7 +5,9 @@ import com.bankdemo.model.user.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -42,5 +44,18 @@ public class UserDAOImpl implements UserDAO {
     public List<User> getUsers() {
         final String classname = User.class.getName();
         return (List<User>) em.createQuery("from " + classname + " e").getResultList();
+    }
+
+    @Override
+    public User getUserByUserName(String username) {
+        Query query = em.createNativeQuery("select id from users where username = ?1");
+        query.setParameter(1, username);
+
+        try {
+            int userUd = (int) query.getSingleResult();
+            return getUser(userUd);
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }

@@ -28,34 +28,33 @@ public interface AccountWS {
     String WS_NAMESPACE = "http://soap.ws.bankdemo.com/";
 
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL')")
     Account openAccount(
             @WebParam(name = "iban") @XmlElement(required = true) String iban,
             @WebParam(name = "currencyCode") @XmlElement(required = true) String currencyCode,
             @WebParam(name = "individualPersonalNumber") @XmlElement(required = true) String individualPersonalNumber
     ) throws ApplicationException;;
 
+
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL')")
     void closeAccount(
             @WebParam(name = "iban") @XmlElement(required = true) String iban
     ) throws ApplicationException;;
 
+
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL')")
     void deposit(
         @WebParam(name = "iban") @XmlElement(required = true) String iban,
         @WebParam(name = "amount") @XmlElement(required = true) Double amount
     ) throws ApplicationException;
 
+
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ACCOUNT_INFO') or hasRole('ROLE_ACCOUNT_ALL')")
     Double balance(
             @WebParam(name = "iban") @XmlElement(required = true) String iban
     ) throws ApplicationException;
 
+
     @WebMethod
-    @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL')")
     void withdraw(
             @WebParam(name = "iban") @XmlElement(required = true) String iban,
             @WebParam(name = "amount") @XmlElement(required = true) Double amount

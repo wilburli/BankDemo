@@ -39,10 +39,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
         http.authorizeRequests()
-                .requestMatchers(request -> request.getMethod().equals(RequestMethod.GET.name())).permitAll()
+                .antMatchers("/user/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
-                .and().httpBasic()
+                .and()
+                .httpBasic()
                 .and().csrf().disable();
     }
 
