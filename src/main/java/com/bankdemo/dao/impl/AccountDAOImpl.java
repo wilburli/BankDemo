@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -60,5 +61,27 @@ public class AccountDAOImpl implements AccountDAO {
         } catch (NoResultException e) {
             return null;
         }
+    }
+
+    @Override
+    public List<Account> getAccountsByPersonId(Integer id) {
+        Query query = em.createNativeQuery("select id from accounts where person_id = ?1");
+        query.setParameter(1, id);
+
+        List<Account> result = new ArrayList<>();
+
+        try {
+            List<Integer> list = (List<Integer>) query.getResultList();
+            for (int i : list) {
+                Account account = getAccount(i);
+                if (account != null) {
+                    result.add(account);
+                }
+            }
+
+        } catch (NoResultException e) {
+        }
+
+        return result;
     }
 }

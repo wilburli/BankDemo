@@ -48,4 +48,9 @@ public class AccountServiceImpl implements AccountService {
     public Account getAccountByIban(String iban) {
         return accountDAO.getAccountByIban(iban);
     }
+
+    @Override
+    public List<Account> getAccountsByPersonId(Integer id) {
+        return accountDAO.getAccountsByPersonId(id);
+    }
 }

@@ -28,4 +28,7 @@ public interface AccountService {
 
     @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL')")
     Account getAccountByIban(String iban);
+
+    @PreAuthorize("hasRole('ROLE_ACCOUNT_ALL')")
+    List<Account> getAccountsByPersonId(Integer id);
 }
