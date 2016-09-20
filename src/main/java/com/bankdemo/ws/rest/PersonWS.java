@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * Created by Ilyas.Kuanyshbekov on 16.09.2016.
  */
+@RequestMapping("/rest")
 public interface PersonWS {
 
     @RequestMapping(value = "/person/", method = RequestMethod.POST)

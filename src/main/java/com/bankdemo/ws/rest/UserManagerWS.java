@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * Created by Ilyas.Kuanyshbekov on 14.09.2016.
  */
+@RequestMapping("/rest")
 public interface UserManagerWS {
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
