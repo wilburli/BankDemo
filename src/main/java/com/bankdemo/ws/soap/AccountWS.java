@@ -3,7 +3,6 @@ package com.bankdemo.ws.soap;
 import com.bankdemo.exceptions.ApplicationException;
 import com.bankdemo.model.account.Account;
 import com.bankdemo.util.CxfAutoRegistrationEndpointBean;
-import org.springframework.security.access.prepost.PreAuthorize;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
