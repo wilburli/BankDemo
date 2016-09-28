@@ -1,5 +1,15 @@
 package com.bankdemo.external_connectors.kkb;
 
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.util.Objects;
+
 /**
  * Created by Ilyas.Kuanyshbekov on 27.09.2016.
  */
@@ -10,7 +20,7 @@ public class JAXBUtils {
         Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
         marshaller.setProperty(Marshaller.JAXB_FRAGMENT, !addXmlHeader);
-
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         try (StringWriter writer = new StringWriter()) {
 
             marshaller.marshal(marshallerObject, writer);

@@ -1,7 +1,5 @@
 package com.bankdemo.external_connectors.kkb.service;
 
-import com.bankdemo.external_connectors.kkb.service.KkbRequest;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

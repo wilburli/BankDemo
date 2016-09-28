@@ -1,35 +1,23 @@
 package com.bankdemo.external_connectors.kkb.service;
 
-import com.bankdemo.external_connectors.kkb.RequestParameter;
+import com.bankdemo.external_connectors.kkb.signature.Signature;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Ilyas.Kuanyshbekov on 22.09.2016.
  */
 @XmlRootElement(name = "request")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class KkbRequest {
-
-    /**
-     * Payment reference from the portal
-     */
-    @XmlAttribute(name = "id")
-    private String id;
 
     /**
      * Mnemonic of the operation type
      */
     @XmlAttribute(name = "OperType")
     private String operType;
-
-    /**
-     * service id
-     */
-    @XmlAttribute(name = "service")
-    private String service;
 
     /**
      * Mnemonic of the client portal
@@ -44,6 +32,12 @@ public class KkbRequest {
     private String clientId;
 
     /**
+     * Payment reference from the portal
+     */
+    @XmlAttribute(name = "id")
+    private String id;
+
+    /**
      * Mnemonic of the server portal
      */
     @XmlAttribute(name = "server")
@@ -56,22 +50,97 @@ public class KkbRequest {
     private String serverId;
 
     /**
+     * service id
+     */
+    @XmlAttribute(name = "service")
+    private String service;
+
+    /**
      * Specific parameters
      */
     @XmlElement(name = "p")
-    List<RequestParameter> parameters;
+    private List<RequestParameter> parameters = new ArrayList<>();
+
+    /**
+     * KKB signature
+     */
+    @XmlElement(name = "Signature")
+    private Signature signature;
+
 
     public KkbRequest() {
     }
 
-    public KkbRequest(String id, String operType, String service, String client, String clientId, String server, String serverId, List<RequestParameter> parameters) {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public String getOperType() {
+        return operType;
+    }
+
+    public void setOperType(String operType) {
         this.operType = operType;
+    }
+
+    public String getService() {
+        return service;
+    }
+
+    public void setService(String service) {
         this.service = service;
+    }
+
+    public String getClient() {
+        return client;
+    }
+
+    public void setClient(String client) {
         this.client = client;
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
         this.clientId = clientId;
+    }
+
+    public String getServer() {
+        return server;
+    }
+
+    public void setServer(String server) {
         this.server = server;
+    }
+
+    public String getServerId() {
+        return serverId;
+    }
+
+    public void setServerId(String serverId) {
         this.serverId = serverId;
+    }
+
+    public List<RequestParameter> getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(List<RequestParameter> parameters) {
         this.parameters = parameters;
     }
+
+    public Signature getSignature() {
+        return signature;
+    }
+
+    public void setSignature(Signature signature) {
+        this.signature = signature;
+    }
+
 }

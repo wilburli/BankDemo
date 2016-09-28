@@ -1,8 +1,7 @@
 package com.bankdemo.external_connectors.kkb.service;
 
-import com.bankdemo.external_connectors.kkb.service.KkbRequest;
-import com.bankdemo.external_connectors.kkb.service.KkbResponse;
-import com.bankdemo.external_connectors.kkb.service.KkbService;
+import com.bankdemo.external_connectors.kkb.signature.Signature;
+import com.bankdemo.external_connectors.kkb.signature.SignedInfo;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -13,6 +12,10 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Ilyas.Kuanyshbekov on 22.09.2016.
@@ -25,7 +28,7 @@ public class KkbConnector {
 
     protected JAXBContext jaxbContext;
 
-    private static final String Endpoint = "https://testws.homebank.kz/ServiceGate/RunService";
+    public static final String Endpoint = "https://testws.homebank.kz/ServiceGate/RunService";
 
     private KkbService kkbService;
 
@@ -44,9 +47,6 @@ public class KkbConnector {
                 Endpoint,
                 KkbService.class
         );
-
-
-
     }
 
     public KkbResponse provide(KkbRequest request) throws Exception {
@@ -54,5 +54,7 @@ public class KkbConnector {
         System.out.println(response.readEntity(String.class));
         return null;
     }
+
+
 
 }

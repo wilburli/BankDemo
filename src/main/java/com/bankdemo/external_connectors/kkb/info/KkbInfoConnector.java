@@ -1,28 +1,32 @@
 package com.bankdemo.external_connectors.kkb.info;
 
-import com.bankdemo.external_connectors.kkb.service.KkbService;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import java.io.StringWriter;
 
 /**
  * Created by Ilyas.Kuanyshbekov on 22.09.2016.
  */
+@Component
 public class KkbInfoConnector {
-
 
     @Autowired
     protected ObjectMapper objectMapper;
 
     protected JAXBContext jaxbContext;
 
-    private static final String Endpoint = "https://testws.homebank.kz/ServiceGate/InfoService";
+    private static final String Endpoint = "https://testws.homebank.kz/ServiceGate/ServiceInfo";
 
-    private KkbService kkbService;
+    private KkbInfoService kkbInfoService;
 
     @PostConstruct
     public void postConstruct() throws Exception {
@@ -33,22 +37,39 @@ public class KkbInfoConnector {
                     .disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
         }
         jaxbContext = JAXBContext.newInstance(
-                KkbResponse.class
+                KkbInfoResponse.class
         );
-        kkbService = JAXRSClientFactory.create(
+        kkbInfoService = JAXRSClientFactory.create(
                 Endpoint,
-                KkbService.class
+                KkbInfoService.class
         );
+
 
 
 
     }
 
-    public KkbResponse provide(KkbRequest request) throws Exception {
-        Response response = kkbService.provide(request);
+    public KkbInfoResponse provide(KkbInfoRequest request) throws Exception {
+
+        JAXBContext jaxbContextRequest = JAXBContext.newInstance(
+                KkbInfoRequest.class
+        );
+        Marshaller marshaller = jaxbContextRequest.createMarshaller();
+        StringWriter stringWriter = new StringWriter();
+        marshaller.marshal(request, stringWriter);
+
+        System.out.println(stringWriter);
+
+        Response response = kkbInfoService.provide(request);
+        System.out.println(response.getStatus());
         System.out.println(response.readEntity(String.class));
         return null;
     }
+
+
+
+
+
 
 
 }
