@@ -7,25 +7,25 @@ import javax.xml.bind.annotation.*;
  */
 @XmlRootElement(name = "Signature")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Signature {
+public class KkbSignature {
 
     @XmlAttribute(name = "xmlns")
     private String xmlns;
 
     @XmlElement(name = "SignedInfo")
-    private SignedInfo signedInfo;
+    private KkbSignedInfo signedInfo;
 
     @XmlElement(name = "SignatureValue")
     private String signatureValue;
 
-    public Signature() {
+    public KkbSignature() {
     }
 
     public void setXmlns(String xmlns) {
         this.xmlns = xmlns;
     }
 
-    public void setSignedInfo(SignedInfo signedInfo) {
+    public void setSignedInfo(KkbSignedInfo signedInfo) {
         this.signedInfo = signedInfo;
     }
 

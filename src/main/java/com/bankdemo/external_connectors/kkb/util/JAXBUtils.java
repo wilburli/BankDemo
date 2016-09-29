@@ -1,4 +1,6 @@
-package com.bankdemo.external_connectors.kkb;
+package com.bankdemo.external_connectors.kkb.util;
+
+import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.JAXBContext;
@@ -13,6 +15,7 @@ import java.util.Objects;
 /**
  * Created by Ilyas.Kuanyshbekov on 27.09.2016.
  */
+@Component
 public class JAXBUtils {
 
     public String marshal(@NotNull Object marshallerObject, boolean addXmlHeader) throws JAXBException, IOException {
@@ -43,5 +46,4 @@ public class JAXBUtils {
             return (T) unmarshaller.unmarshal(reader);
         }
     }
-
 }

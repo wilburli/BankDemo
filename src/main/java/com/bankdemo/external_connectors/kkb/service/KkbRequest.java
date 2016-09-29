@@ -1,6 +1,6 @@
 package com.bankdemo.external_connectors.kkb.service;
 
-import com.bankdemo.external_connectors.kkb.signature.Signature;
+import com.bankdemo.external_connectors.kkb.signature.KkbSignature;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
@@ -59,13 +59,13 @@ public class KkbRequest {
      * Specific parameters
      */
     @XmlElement(name = "p")
-    private List<RequestParameter> parameters = new ArrayList<>();
+    private List<KKbParameter> parameters = new ArrayList<>();
 
     /**
      * KKB signature
      */
     @XmlElement(name = "Signature")
-    private Signature signature;
+    private KkbSignature signature;
 
 
     public KkbRequest() {
@@ -127,20 +127,19 @@ public class KkbRequest {
         this.serverId = serverId;
     }
 
-    public List<RequestParameter> getParameters() {
+    public List<KKbParameter> getParameters() {
         return parameters;
     }
 
-    public void setParameters(List<RequestParameter> parameters) {
+    public void setParameters(List<KKbParameter> parameters) {
         this.parameters = parameters;
     }
 
-    public Signature getSignature() {
+    public KkbSignature getSignature() {
         return signature;
     }
 
-    public void setSignature(Signature signature) {
+    public void setSignature(KkbSignature signature) {
         this.signature = signature;
     }
-
 }

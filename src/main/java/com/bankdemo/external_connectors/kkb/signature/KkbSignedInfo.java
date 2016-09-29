@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Ilyas.Kuanyshbekov on 26.09.2016.
  */
 @XmlRootElement(name = "SignedInfo")
-public class SignedInfo {
+public class KkbSignedInfo {
 
     @XmlElement(name = "CanonicalizationMethod")
     private CanonicalizationMethod canonicalizationMethod;
@@ -21,15 +21,7 @@ public class SignedInfo {
     @XmlElement(name = "Reference")
     private Reference reference;
 
-
-    public SignedInfo() {
-    }
-
-
-    public SignedInfo(CanonicalizationMethod canonicalizationMethod, SignatureMethod signatureMethod, Reference reference) {
-        this.canonicalizationMethod = canonicalizationMethod;
-        this.signatureMethod = signatureMethod;
-        this.reference = reference;
+    public KkbSignedInfo() {
     }
 
     @XmlRootElement(name = "CanonicalizationMethod")
@@ -120,9 +112,5 @@ public class SignedInfo {
                 this.transforms = transforms;
             }
         }
-
     }
-
-
-
 }
