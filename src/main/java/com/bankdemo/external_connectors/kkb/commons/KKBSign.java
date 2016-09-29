@@ -1,5 +1,6 @@
-package com.bankdemo.external_connectors.kkb.sign;
+package com.bankdemo.external_connectors.kkb.commons;
 
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -7,6 +8,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.xml.crypto.MarshalException;
 import javax.xml.crypto.dsig.*;
 import javax.xml.crypto.dsig.dom.DOMSignContext;
@@ -37,20 +39,36 @@ import java.util.List;
 @Component
 public class KKBSign {
 
+    private final static String PROPERTY_NAME_KEY_STORE = "kkbsign.keystore";
+    private final static String PROPERTY_NAME_ALIAS = "kkbsign.alias";
+    private final static String PROPERTY_NAME_STOREPASS = "kkbsign.storepass";
+    private final static String PROPERTY_NAME_KEYPASS = "kkbsign.keypass";
+
+
     private SignatureHelper signature;
+
+    @Resource
+    private Environment env;
 
     public KKBSign() {
     }
 
     @PostConstruct
     public void postConstruct() {
-        String keystore="C:\\cert\\keys_rsa.jks";
-        String alias="cert";
-        String keypass="123456";
-        String storepass="123456";
-
         try {
-            signature = new SignatureHelper(keystore, alias, storepass, keypass);
+            ClassLoader classLoader = getClass().getClassLoader();
+            File file = new File(classLoader.getResource(env.getRequiredProperty(PROPERTY_NAME_KEY_STORE)).getFile());
+
+            if (file == null) {
+                throw new FileNotFoundException("Key store file not found");
+            }
+
+            signature = new SignatureHelper(
+                    file.getPath(),
+                    env.getRequiredProperty(PROPERTY_NAME_ALIAS),
+                    env.getRequiredProperty(PROPERTY_NAME_STOREPASS),
+                    env.getRequiredProperty(PROPERTY_NAME_KEYPASS)
+            );
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | FileNotFoundException e) {
             e.printStackTrace();
         }
