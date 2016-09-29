@@ -19,7 +19,6 @@ import java.io.StringWriter;
 
 /**
  * Created by Ilyas.Kuanyshbekov on 22.09.2016.
- * asd
  */
 @Component
 public class KkbConnector {
@@ -46,10 +45,8 @@ public class KkbConnector {
         KkbRequest requestSigned = signRequest(request);
         requestSigned.getSignature().setXmlns("http://www.w3.org/2000/09/xmldsig#");
 
-        status(requestSigned, "REQUEST AFTER SIGNUTURE");
         Response response = kkbService.provide(requestSigned);
         String responseString = response.readEntity(String.class);
-        System.out.println("******* RESPONSE STRING " + responseString);
         KkbResponse kkbResponse = jaxbUtils.unmarshal(responseString, KkbResponse.class);
         return kkbResponse;
     }
@@ -58,11 +55,5 @@ public class KkbConnector {
         String xmlContent = jaxbUtils.marshal(request, false);
         String xmlContentSigned = kkbSign.sign(xmlContent);
         return jaxbUtils.unmarshal(xmlContentSigned, KkbRequest.class);
-    }
-
-    public static void status(Object obj, String message) throws Exception {
-        JAXBUtils utils = new JAXBUtils();
-        System.out.println("******* " + message);
-        System.out.println(utils.marshal(obj, false));
     }
 }

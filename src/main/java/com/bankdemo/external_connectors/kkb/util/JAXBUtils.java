@@ -23,7 +23,6 @@ public class JAXBUtils {
         Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
         marshaller.setProperty(Marshaller.JAXB_FRAGMENT, !addXmlHeader);
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         try (StringWriter writer = new StringWriter()) {
 
             marshaller.marshal(marshallerObject, writer);

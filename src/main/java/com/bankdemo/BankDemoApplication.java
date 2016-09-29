@@ -9,6 +9,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import java.io.StringWriter;
+
 @SpringBootApplication(scanBasePackages = {"com.bankdemo"})
 public class BankDemoApplication {
 
@@ -36,6 +40,14 @@ public class BankDemoApplication {
 
         KkbConnector connector = (KkbConnector)context.getBean("kkbConnector");
         KkbResponse response = connector.provide(request);
+
+        JAXBContext jaxbContext = JAXBContext.newInstance(KkbResponse.class);
+        Marshaller marshaller = jaxbContext.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        StringWriter writer = new StringWriter();
+        marshaller.marshal(response, writer);
+        System.out.println(writer.toString());
     }
 
 }

@@ -57,14 +57,8 @@ public class KKBSign {
     }
 
     public String sign(String xmlContent) {
-        String keystore="C:\\cert\\keys_rsa.jks";
-        String alias="cert";
-        String keypass="123456";
-        String storepass="123456";
         try {
-            XMLDigitalSignature xmlDigitalSignature = new XMLDigitalSignature(keystore, storepass, alias, keypass);
-            return xmlDigitalSignature.SignXMLString(xmlContent);
-            //return signature.signXMLString(xmlContent);
+            return signature.signXMLString(xmlContent);
         } catch (ParserConfigurationException | SAXException | IOException |
                 XPathException | KeyStoreException | NoSuchAlgorithmException | CertificateException | UnrecoverableKeyException |
                 InvalidAlgorithmParameterException | MarshalException | XMLSignatureException | TransformerException e) {
