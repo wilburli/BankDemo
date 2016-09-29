@@ -1,6 +1,7 @@
 package com.bankdemo.external_connectors.kkb.service;
 
-import com.bankdemo.external_connectors.kkb.signature.KkbSignature;
+import com.bankdemo.external_connectors.kkb.commons.KKbParameter;
+import com.bankdemo.external_connectors.kkb.commons.KkbSignature;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;

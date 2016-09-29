@@ -1,21 +1,15 @@
 package com.bankdemo.external_connectors.kkb.service;
 
-import com.bankdemo.external_connectors.kkb.sign.KKBSign;
+import com.bankdemo.external_connectors.kkb.commons.KKBSign;
 import com.bankdemo.external_connectors.kkb.util.JAXBUtils;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.ws.rs.core.Response;
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import java.io.IOException;
-import java.io.StringWriter;
 
 /**
  * Created by Ilyas.Kuanyshbekov on 22.09.2016.

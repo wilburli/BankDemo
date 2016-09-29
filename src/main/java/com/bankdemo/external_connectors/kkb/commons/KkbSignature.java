@@ -1,4 +1,4 @@
-package com.bankdemo.external_connectors.kkb.signature;
+package com.bankdemo.external_connectors.kkb.commons;
 
 import javax.xml.bind.annotation.*;
 

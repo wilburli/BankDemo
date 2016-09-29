@@ -1,8 +1,7 @@
-package com.bankdemo.external_connectors.kkb.signature;
+package com.bankdemo.external_connectors.kkb.commons;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 

@@ -16,5 +16,4 @@ public interface KkbService {
     Response provide(
             @XmlElement KkbRequest request
     );
-
 }
