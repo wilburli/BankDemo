@@ -34,7 +34,7 @@ public class UserProcessesImpl implements UserProcesses {
         user.setUsername(username);
         user.setPassword(password);
         userService.addUser(user);
-        logger.info("New user created " + user);
+        logger.info("New users created " + user);
         return user;
     }
 
@@ -80,7 +80,7 @@ public class UserProcessesImpl implements UserProcesses {
         userRole.setUser(user);
         userRole.setRole(role);
         userRoleService.addUserRole(userRole);
-        logger.info("New user role created " + userRole);
+        logger.info("New users role created " + userRole);
         return userRole;
     }
 

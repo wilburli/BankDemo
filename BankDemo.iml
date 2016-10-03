@@ -20,6 +20,7 @@
     <orderEntry type="library" name="Thymeleaf-2.1.4" level="project" />
     <orderEntry type="library" name="Thymeleaf-2.1.4" level="project" />
     <orderEntry type="library" name="Thymeleaf-2.1.4" level="project" />
+    <orderEntry type="library" name="KKBSign" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-cache:1.4.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:1.4.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-logging:1.4.0.RELEASE" level="project" />
@@ -145,6 +146,5 @@
     <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.6.11" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.6.11" level="project" />
     <orderEntry type="library" name="Maven: net.sf.ehcache:ehcache:2.10.2.2.21" level="project" />
-    <orderEntry type="library" name="KKBSign" level="project" />
   </component>
 </module>

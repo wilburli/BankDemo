@@ -63,7 +63,7 @@ public class UserManagerWSController  implements UserManagerWS {
 
         if (persistedUser != null) {
             HttpHeaders headers = new HttpHeaders();
-            headers.setLocation(uriComponentsBuilder.path("/user/{id}").buildAndExpand(persistedUser.getId()).toUri());
+            headers.setLocation(uriComponentsBuilder.path("/users/{id}").buildAndExpand(persistedUser.getId()).toUri());
             return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
         } else {
             logger.error("User cannot be created");

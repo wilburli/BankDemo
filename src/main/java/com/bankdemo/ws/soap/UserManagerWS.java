@@ -80,7 +80,7 @@ public interface UserManagerWS {
 
     @WebMethod
     UserRole getUserRole(
-            @WebParam(name = "user role id") @XmlElement(required = true) int id
+            @WebParam(name = "users role id") @XmlElement(required = true) int id
     ) throws ApplicationException;
 
 
