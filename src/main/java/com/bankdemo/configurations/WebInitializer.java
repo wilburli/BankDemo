@@ -1,12 +1,10 @@
 package com.bankdemo.configurations;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
  * Created by Ilyas.Kuanyshbekov on 19.09.2016.
  */
-
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
@@ -23,6 +21,4 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
     protected String[] getServletMappings() {
         return new String[]{"/*"};
     }
-
-
 }
