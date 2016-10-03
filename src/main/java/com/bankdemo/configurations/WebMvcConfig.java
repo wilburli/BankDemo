@@ -1,5 +1,6 @@
 package com.bankdemo.configurations;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -20,8 +21,11 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan(basePackages = { "com.bankdemo.controllers" })
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
+    private static Logger logger = Logger.getLogger(WebMvcConfig.class);
+
     @Bean
     public ViewResolver viewResolver() {
+        logger.debug("ViewResolver initialized");
 
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
